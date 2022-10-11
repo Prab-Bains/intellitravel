@@ -10,4 +10,23 @@
         <item>UK</item>
         <item>Brazil</item>
     </string-array>
+    <string name="country_name">Canada</string>
+    <string name="emergency_number">Emergency Number: 9-1-1</string>
+    <string name="official_languages">Official Languages: English, French</string>
+    <string name="travel_advisory">Travel Advisory Status: Green</string>
+    <string name="notable_disease_presence">Notable diseases present: None</string>
+    <string name="covid_info">COVID Information:</string>
+    <string name="covid_cases">Active COVID cases: 2730</string>
+    <string name="covid_regulations">ArriveCAN registration</string>
+    <string name="high_season">High season: May - September</string>
+    <string name="low_season">Low season: October - April</string>
+    <string name="airport_daily_flights">Daily flights outgoing: 23</string>
+    <string-array name="airports">
+        <item>YVR</item>
+        <item>YOW</item>
+        <item>YYC</item>
+        <item>YYZ</item>
+        <item>YUL</item>
+        <item>YEG</item>
+    </string-array>
 </resources>
