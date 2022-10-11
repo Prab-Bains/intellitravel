@@ -14,7 +14,17 @@
         android:theme="@style/Theme.IntelliTravel"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".SavedList"
+            android:exported="false" />
+        <activity
+            android:name=".CountrySegmentDetails"
+            android:exported="false"
+            android:parentActivityName=".CountryView"/>
+        <activity
+            android:name=".CountryView"
+            android:exported="false" />
+        <activity
+            android:name=".SearchPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
