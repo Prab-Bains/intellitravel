@@ -3,17 +3,53 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2005" />
-        <entry key="app/src/main/res/layout/activity_country_view.xml" value="0.11351351351351352" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2740628166160081" />
-        <entry key="app/src/main/res/layout/activity_test.xml" value="0.32083333333333336" />
-        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.32083333333333336" />
-        <entry key="app/src/main/res/layout/fragment_footer_menu.xml" value="0.25815217391304346" />
-        <entry key="app/src/main/res/layout/fragment_item.xml" value="0.15602836879432624" />
-        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.2740628166160081" />
-        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.17526194254557292" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3235" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3235" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/fragment_bread_crumb_item.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/fragment_bread_crumb_item_material.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/fragment_bread_crumbs.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/global_actions_item.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/global_actions_silent_mode.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/list_content.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/list_content_simple.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/list_gestures_overlay.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/list_menu_item_checkbox.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/list_menu_item_icon.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/list_menu_item_layout.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/list_menu_item_radio.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/locale_picker_item.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/media_controller.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/media_route_chooser_dialog.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/media_route_controller_dialog.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/media_route_list_item.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/menu_item.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_expand_button.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_intruder_content.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_material_action.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_material_action_emphasized.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_material_action_list.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_material_action_tombstone.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_material_media_action.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_material_reply_text.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_template_conversation_header.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/notification_template_conversation_icon_container.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_2.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_2_single_choice.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_activated_1.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_activated_2.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_checked.xml" value="0.3307291666666667" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/work_widget_mask_view.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_list_24.xml" value="0.1895" />
+        <entry key="app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1895" />
+        <entry key="app/src/main/res/drawable/ic_outline_search_24.xml" value="0.1895" />
+        <entry key="app/src/main/res/layout/activity_country_view.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/activity_further_details.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/fragment_country_recycler_view.xml" value="0.3296875" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/row_layout.xml" value="0.3296875" />
+        <entry key="app/src/main/res/layout/suggested_countries.xml" value="0.3296875" />
+        <entry key="app/src/main/res/layout/test.xml" value="0.3296875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1415" />
       </map>
     </option>
   </component>

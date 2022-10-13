@@ -11,7 +11,7 @@
         <item>Brazil</item>
     </string-array>
     <string name="country_name">Canada</string>
-    <string name="emergency_number">Emergency Number: 9-1-1</string>
+    <string name="emergency_number">Emergency Number: 9–1-1</string>
     <string name="official_languages">Official Languages: English, French</string>
     <string name="travel_advisory">Travel Advisory Status: Green</string>
     <string name="notable_disease_presence">Notable diseases present: None</string>
@@ -29,4 +29,17 @@
         <item>YUL</item>
         <item>YEG</item>
     </string-array>
+
+    <string name="country">Country</string>
+    <string name="country_description">Insert country description</string>
+    <string name="flag_image">Image of the country\'s flag</string>
+    <string-array name="descriptions">
+        <item>This is Canada.</item>
+        <item>This is USA.</item>
+        <item>This is Japan.</item>
+        <item>This is Germany.</item>
+        <item>This is UK.</item>
+        <item>This is Brazil.</item>
+    </string-array>
+    <string name="suggestedCountriesTitle">Suggested Countries</string>
 </resources>
