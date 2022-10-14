@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SearchPage">
 
     <LinearLayout
@@ -17,7 +18,7 @@
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="30dp"
         android:drawableEnd="@drawable/ic_outline_search_24"
         android:ems="10"
@@ -31,6 +32,16 @@
         android:id="@+id/linear_layout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonSearchSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/settings_main"
+            android:layout_marginTop="600dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

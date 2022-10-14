@@ -16,6 +16,9 @@
             android:name=".CountryViewActivity"
             android:exported="false" />
         <activity
+            android:name=".SuggestedCountries"
+            android:exported="false" />
+        <activity
             android:name=".SearchPage"
             android:exported="true">
             <intent-filter>

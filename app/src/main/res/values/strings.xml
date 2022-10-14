@@ -11,7 +11,7 @@
         <item>Brazil</item>
     </string-array>
     <string name="country_name">Canada</string>
-    <string name="emergency_number">Emergency Number: 9-1-1</string>
+    <string name="emergency_number">Emergency Number: 9–1–1</string>
     <string name="official_languages">Official Languages: English, French</string>
     <string name="travel_advisory">Travel Advisory Status: Green</string>
     <string name="notable_disease_presence">Notable diseases present: None</string>
@@ -28,5 +28,39 @@
         <item>YYZ</item>
         <item>YUL</item>
         <item>YEG</item>
+    </string-array>
+
+    <string name="country">Country</string>
+    <string name="country_description">Insert country description</string>
+    <string name="flag_image">Image of the country\'s flag</string>
+    <string-array name="descriptions">
+        <item>This is Canada.</item>
+        <item>This is USA.</item>
+        <item>This is Japan.</item>
+        <item>This is Germany.</item>
+        <item>This is UK.</item>
+        <item>This is Brazil.</item>
+    </string-array>
+    <string name="suggestedCountriesTitle">Suggested Countries</string>
+
+    <string name="settings_main">Settings</string>
+    <string name="test_string">Languages Spoken:\n- English\n- French\nMinimum Travel Advisory Status:\n- Green\n- Yellow\n- Orange\n- Red\nAcceptable Disease Risks:\n- None (Default)\n- Yellow Fever\n- Malaria\nCOVID Risk:\n- Low\n- Medium\n- High</string>
+    <string-array name="search_settings">
+        <item>Languages Spoken:</item>
+        <item>- English</item>
+        <item>- French</item>
+        <item>Minimum Travel Advisory Status:</item>
+        <item>- Green</item>
+        <item>- Yellow</item>
+        <item>- Orange</item>
+        <item>- Red</item>
+        <item>Acceptable Disease Risks:</item>
+        <item>- None (Default)</item>
+        <item>- Yellow Fever</item>
+        <item>- Malaria</item>
+        <item>COVID Risk:</item>
+        <item>- Low</item>
+        <item>- Medium</item>
+        <item>- High</item>
     </string-array>
 </resources>
