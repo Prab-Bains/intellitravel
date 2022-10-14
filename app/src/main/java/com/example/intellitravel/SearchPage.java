@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.SurfaceControl;
 import android.view.View;
@@ -31,5 +33,17 @@ public class SearchPage extends AppCompatActivity {
             fragmentTransaction1.replace(R.id.linear_layout, searchSettingsFragment);
             fragmentTransaction1.commit();
         });
+
+        Button toSuggestedCountries = findViewById(R.id.buttonSuggestedCountries);
+        toSuggestedCountries.setOnClickListener(view -> {
+            Intent intent = new Intent(this, SuggestedCountries.class);
+            startActivity(intent);
+        });
+
+//        Button toFurtherDetails = findViewById(R.id.buttonFurtherDetails);
+//        toFurtherDetails.setOnClickListener(view -> {
+//            Intent intent = new Intent(this, FurtherDetails.class);
+//            startActivity(intent);
+//        });
     }
 }

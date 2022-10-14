@@ -1,14 +1,17 @@
 package com.example.intellitravel;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class CountryRecyclerViewFragment extends Fragment implements ItemClickListener {
     RecyclerView recyclerView;
@@ -40,6 +43,20 @@ public class CountryRecyclerViewFragment extends Fragment implements ItemClickLi
 
     @Override
     public void onClick(View view, int position) {
-
+        FurtherDetails furtherDetailsFragment = new FurtherDetails();
+        Bundle bundle = new Bundle();
+        bundle.putString("country", countries[position]);
+        Log.d("country", countries[position]);
+        furtherDetailsFragment.setArguments(bundle);
+        getActivity().getSupportFragmentManager().beginTransaction()
+//                .setCustomAnimations(
+//                        R.anim.slide_in_right, // enter
+//                        R.anim.fade_out, // exit
+//                        R.anim.fade_in, // popEnter
+//                        R.anim.slide_out_right // popExit
+//                )
+                .replace(R.id.listOfCountriesFragment, furtherDetailsFragment)
+//                .addToBackStack(null)
+                .commit();
     }
 }
