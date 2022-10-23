@@ -2,6 +2,8 @@
     <string name="app_name">IntelliTravel</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
+    <string name="map">Map</string>
+    <string name="my_list">My List</string>
     <string-array name="country_names_list">
         <item>Canada</item>
         <item>USA</item>
@@ -64,4 +66,9 @@
         <item>- Medium</item>
         <item>- High</item>
     </string-array>
+    <string name="title_activity_map_view">MapView</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="map_description">\"google map\"</string>
 </resources>
