@@ -10,24 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="@string/search" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/search_items_list"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:paddingTop="50dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_above="@id/nav_view"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/mobile_navigation" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="wrap_content"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="false"
-            android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@id/button"
-            android:ems="10"
-            android:hint='Search for a country'
-            android:inputType="textPersonName" />
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/bottom_nav_menu"/>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

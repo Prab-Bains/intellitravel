@@ -11,12 +11,6 @@ public class UserFavourites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_favourites);
 
-        SearchBarFragment searchBarFragment = new SearchBarFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.search_bar, searchBarFragment)
-                .commit();
-
         CountryListFragment countryListFragment = new CountryListFragment();
         getSupportFragmentManager()
                 .beginTransaction()
