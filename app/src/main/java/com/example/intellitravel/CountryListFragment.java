@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 
 import com.example.intellitravel.placeholder.PlaceholderContent;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A fragment representing a list of Items.
  */
@@ -55,6 +58,8 @@ public class CountryListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
+        List<String> countries_list = Arrays.asList(this.getResources().getStringArray(R.array.country_names_list));
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -64,7 +69,7 @@ public class CountryListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyCountryListRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            recyclerView.setAdapter(new MyCountryListRecyclerViewAdapter(countries_list));
         }
         return view;
     }

@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCountryListRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<String> mValues;
 
-    public MyCountryListRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public MyCountryListRecyclerViewAdapter(List<String> items) {
         mValues = items;
     }
 
@@ -34,8 +34,8 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+//        holder.mIdView.setText(mValues.get(position).id);
+        holder.mContentView.setText(mValues.get(position));
     }
 
     @Override
@@ -44,13 +44,13 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mIdView;
+//        public final TextView mIdView;
         public final TextView mContentView;
-        public PlaceholderItem mItem;
+        public String mItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
+//            mIdView = binding.itemNumber;
             mContentView = binding.content;
         }
 

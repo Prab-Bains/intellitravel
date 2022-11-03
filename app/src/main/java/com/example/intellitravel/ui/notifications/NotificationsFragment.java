@@ -1,5 +1,6 @@
 package com.example.intellitravel.ui.notifications;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.intellitravel.R;
 import com.example.intellitravel.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {
