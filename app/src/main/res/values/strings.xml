@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">IntelliTravel</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
     <string name="map">Map</string>
     <string name="my_list">My List</string>
+    <string name="country_details">Country Details</string>
+
     <string-array name="country_names_list">
         <item>Canada</item>
         <item>USA</item>
@@ -16,7 +17,8 @@
     <string name="emergency_number">Emergency Number: 9–1–1</string>
     <string name="official_languages">Official Languages: English, French</string>
     <string name="travel_advisory">Travel Advisory Status: Green</string>
-    <string name="notable_disease_presence">Notable diseases present: None</string>
+    <string name="notable_disease_presence">Notable diseases present:</string>
+    <string name="none">None</string>
     <string name="covid_info">COVID Information:</string>
     <string name="covid_cases">Active COVID cases: 2730</string>
     <string name="covid_regulations">ArriveCAN registration</string>
@@ -72,4 +74,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="map_description">\"google map\"</string>
     <string name="title_activity_search_page">SearchPage</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_country_details">CountryDetails</string>
 </resources>

@@ -21,17 +21,26 @@ public class SearchPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_page);
 
-        SearchBarFragment searchBarFragment = new SearchBarFragment();
+        System.out.println("loading search page");
+
+        SearchPageFragment searchPageFragment = new SearchPageFragment();
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.search_bar, searchBarFragment)
+                .add(R.id.search_page_fragment_container, searchPageFragment)
                 .commit();
 
-        CountryListFragment countryListFragment = new CountryListFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.search_items_list, countryListFragment)
-                .commit();
+//        SearchBarFragment searchBarFragment = new SearchBarFragment();
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.search_bar, searchBarFragment)
+//                .commit();
+//
+//        CountryListFragment countryListFragment = new CountryListFragment();
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.search_items_list, countryListFragment)
+//                .commit();
 
 
     }
