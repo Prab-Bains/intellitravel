@@ -5,6 +5,7 @@
     <string name="my_list">My List</string>
     <string name="country_details">Country Details</string>
     <string name="suggested_countries">Suggested Countries</string>
+    <string name="country_info">Country Info:</string>
 
     <string-array name="country_names_list">
         <item>Canada</item>
