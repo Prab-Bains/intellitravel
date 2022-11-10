@@ -24,30 +24,19 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class CountryDetails extends AppCompatActivity implements OnMapReadyCallback {
 
-    private ActivityCountryDetailsBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityCountryDetailsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_country_details);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_search_home, R.id.nav_map_view, R.id.nav_my_list)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_country_details);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        navView.setSelectedItemId(R.id.nav_search_home);
+
         navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                System.out.println("item clicked");
-                System.out.println(item);
 
                 Class destination = null;
 
@@ -63,7 +52,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
                         break;
                 }
 
-                Intent intent = new Intent(CountryDetails.this, destination);
+                Intent intent = new Intent(getApplicationContext(), destination);
                 intent.putExtra("clicked", item.toString());
                 startActivity(intent);
                 return false;
