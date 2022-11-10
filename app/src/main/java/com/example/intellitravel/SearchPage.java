@@ -2,20 +2,9 @@ package com.example.intellitravel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-
-import com.example.intellitravel.databinding.ActivitySearchPageBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -66,7 +55,5 @@ public class SearchPage extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.search_items_list, countryListFragment)
                 .commit();
-
-
     }
 }
