@@ -3,6 +3,7 @@ package com.example.intellitravel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -23,7 +24,15 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         setContentView(R.layout.activity_country_details);
 
+        Intent intent = getIntent();
+        String countryName = intent.getStringExtra("country_name");
+        System.out.println("from country details");
+        System.out.println(countryName);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        TextView countryNameView = findViewById(R.id.country_name);
+        countryNameView.setText(countryName);
 
         navView.setSelectedItemId(R.id.nav_search_home);
 

@@ -2,12 +2,14 @@ package com.example.intellitravel;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.intellitravel.databinding.FragmentItemBinding;
+import com.google.android.gms.common.util.JsonUtils;
 
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 //        public final TextView mIdView;
         public final TextView mContentView;
         public String mItem;
@@ -47,11 +49,25 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
             super(binding.getRoot());
 //            mIdView = binding.itemNumber;
             mContentView = binding.content;
+
+            mContentView.setOnClickListener(this);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
+        }
+
+        @Override
+        public void onClick(View view) {
+            System.out.println("click!");
+
+            TextView textView = view.findViewById(R.id.content);
+            String countryName = (String) textView.getText();
+
+            Intent intent = new Intent(view.getContext(), CountryDetails.class);
+            intent.putExtra("country_name", countryName);
+            view.getContext().startActivity(intent);
         }
     }
 }
