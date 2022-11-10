@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.intellitravel.placeholder.PlaceholderContent;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,9 +20,7 @@ import java.util.List;
  */
 public class CountryListFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
 
     /**
@@ -34,7 +30,6 @@ public class CountryListFragment extends Fragment {
     public CountryListFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static CountryListFragment newInstance(int columnCount) {
         CountryListFragment fragment = new CountryListFragment();
