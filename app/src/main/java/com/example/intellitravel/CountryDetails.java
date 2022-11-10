@@ -48,7 +48,22 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 System.out.println("item clicked");
                 System.out.println(item);
-                Intent intent = new Intent(CountryDetails.this, SearchPage.class);
+
+                Class destination = null;
+
+                switch (item.toString()) {
+                    case "Search":
+                        destination = SearchPage.class;
+                        break;
+                    case "Map":
+                        destination = MapView.class;
+                        break;
+                    case "My List":
+                        destination = UserFavourites.class;
+                        break;
+                }
+
+                Intent intent = new Intent(CountryDetails.this, destination);
                 intent.putExtra("clicked", item.toString());
                 startActivity(intent);
                 return false;

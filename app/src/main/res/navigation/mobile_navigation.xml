@@ -3,30 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemars.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_country_details_page_fragment">
+    app:startDestination="@+id/placeholder">
 
-    <fragment
-        android:id="@+id/nav_search_bar_fragment"
-        android:name="com.example.intellitravel.SearchBarFragment"
-        android:label="@string/search"
-        tools:layout="@layout/fragment_search_bar"
-        />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_search_bar_fragment"-->
+<!--        android:name="com.example.intellitravel.SearchBarFragment"-->
+<!--        android:label="@string/search"-->
+<!--        tools:layout="@layout/fragment_search_bar"-->
+<!--        />-->
 
-    <fragment
-        android:id="@+id/nav_country_suggestions"
-        android:name="com.example.intellitravel.CountryListFragment"
-        android:label="@string/suggestedCountriesTitle"
-        tools:layout="@layout/fragment_item_list"/>
+<!--    <fragment-->
+<!--        android:id="@+id/nav_country_suggestions"-->
+<!--        android:name="com.example.intellitravel.CountryListFragment"-->
+<!--        android:label="@string/suggestedCountriesTitle"-->
+<!--        tools:layout="@layout/fragment_item_list"/>-->
 
-    <fragment
-        android:id="@+id/nav_search_page_fragment"
-        android:name="com.example.intellitravel.SearchPageFragment"
-        android:label="@string/search"
-        tools:layout="@layout/fragment_search_page"/>
-
-    <fragment
-        android:id="@+id/nav_country_details_page_fragment"
-        android:name="com.example.intellitravel.CountryDetailsFragment"
-        android:label="@string/search"
-        tools:layout="@layout/fragment_country_details"/>
+    <fragment android:id="@+id/placeholder" />
 </navigation>

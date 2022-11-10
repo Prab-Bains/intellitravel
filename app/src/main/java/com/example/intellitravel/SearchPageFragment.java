@@ -2,11 +2,16 @@ package com.example.intellitravel;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,17 +36,7 @@ public class SearchPageFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         System.out.println("onCreate in search page fragment");
-//        SearchBarFragment searchBarFragment = new SearchBarFragment();
-//        getChildFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.search_bar, searchBarFragment)
-//                .commit();
-//
-//        CountryListFragment countryListFragment = new CountryListFragment();
-//        getChildFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.search_items_list, countryListFragment)
-//                .commit();
+
     }
 
     @Override
@@ -60,6 +55,9 @@ public class SearchPageFragment extends Fragment {
                 .beginTransaction()
                 .add(R.id.search_items_list, countryListFragment)
                 .commit();
+
+//        BottomNavigationView bottomNavigationView = getChildFragmentManager()
+
         return inflater.inflate(R.layout.fragment_search_page, container, false);
     }
 }

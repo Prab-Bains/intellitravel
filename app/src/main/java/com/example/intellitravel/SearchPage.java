@@ -1,18 +1,23 @@
 package com.example.intellitravel;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Scanner;
+import com.example.intellitravel.databinding.ActivitySearchPageBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class SearchPage extends AppCompatActivity {
 
@@ -21,60 +26,47 @@ public class SearchPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_page);
 
-        System.out.println("loading search page");
+        BottomNavigationView navView = findViewById(R.id.nav_view);
 
-        SearchPageFragment searchPageFragment = new SearchPageFragment();
+        navView.setSelectedItemId(R.id.nav_search_home);
 
+        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                Class destination = null;
+
+                switch (item.toString()) {
+                    case "Search":
+                        destination = SearchPage.class;
+                        break;
+                    case "Map":
+                        destination = MapView.class;
+                        break;
+                    case "My List":
+                        destination = UserFavourites.class;
+                        break;
+                }
+
+                Intent intent = new Intent(getApplicationContext(), destination);
+                intent.putExtra("clicked", item.toString());
+                startActivity(intent);
+                return false;
+            }
+        });
+
+        SearchBarFragment searchBarFragment = new SearchBarFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.search_page_fragment_container, searchPageFragment)
+                .add(R.id.search_bar, searchBarFragment)
                 .commit();
 
-//        SearchBarFragment searchBarFragment = new SearchBarFragment();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.search_bar, searchBarFragment)
-//                .commit();
-//
-//        CountryListFragment countryListFragment = new CountryListFragment();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.search_items_list, countryListFragment)
-//                .commit();
+        CountryListFragment countryListFragment = new CountryListFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.search_items_list, countryListFragment)
+                .commit();
 
 
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.bottom_nav_menu, menu);
-//
-//        System.out.println("creating menu");
-//
-////        final MenuItem item = menu.findItem(R.id.nav_search);
-////        item.getActionView().setOnClickListener(v -> System.out.println("user wants to go to search page"));
-//        return true;
-//    }
-//
-//    @Override
-//    @SuppressLint("NonConstantResourceId")
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        System.out.println(item);
-//        switch (item.getItemId()) {
-//            case R.id.nav_search:
-//                System.out.println("user wants to go to search page");
-//                return true;
-//            case R.id.nav_map:
-//                System.out.println("user wants to view map");
-//                return true;
-//            case R.id.nav_my_list:
-//                System.out.println("user wants to view their list");
-//                return true;
-//            default:
-//                System.out.println("who knows what the users wants tbh");
-//                return true;
-//        }
-//    }
-
 }
