@@ -78,16 +78,27 @@
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
+<!--                <TextView-->
+<!--                    android:id="@+id/country_emerg_number"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/country_name"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:text="@string/emergency_number"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />-->
                 <TextView
-                    android:id="@+id/country_emerg_number"
+                    android:id="@+id/region"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/country_name"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
-                    android:text="@string/emergency_number"
+                    android:text=""
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
             </RelativeLayout>
 
             <TextView
@@ -98,6 +109,54 @@
                 android:text="@string/official_languages"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
+            <TextView
+                android:id="@+id/capital_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/calling_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/covid_info_title"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:text="@string/covid_info"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/covid_info_active_cases"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:text="@string/covid_cases"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/covid_info_regulations"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:text="@string/covid_regulations"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,35 +168,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="@string/covid_info"
+                    android:text="Risk:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
                 <TextView
-                    android:id="@+id/covid_info_active_cases"
+                    android:id="@+id/risk_level"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/covid_cases"
+                    android:text=""
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <TextView
-                    android:id="@+id/covid_info_regulations"
+                    android:id="@+id/risk_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/covid_regulations"
+                    android:text=""
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/travel_advisory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/travel_advisory"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/travel_advisory"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:text="@string/travel_advisory"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />-->
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -157,7 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:text="@string/none" />
+                    android:text="" />
             </LinearLayout>
 
             <LinearLayout
@@ -166,37 +229,37 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/high_season"
+                    android:id="@+id/currency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="@string/high_season"
+                    android:text=""
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-                <TextView
-                    android:id="@+id/low_season"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/low_season"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+<!--                <TextView-->
+<!--                    android:id="@+id/high_season"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:text="@string/high_season"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/low_season"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:text="@string/low_season"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />-->
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/airports"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/airport_daily_flights"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-            <TextView
-                android:id="@+id/country_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+<!--            <TextView-->
+<!--                android:id="@+id/airports"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:text="@string/airport_daily_flights"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />-->
 
         </androidx.gridlayout.widget.GridLayout>
     </ScrollView>
