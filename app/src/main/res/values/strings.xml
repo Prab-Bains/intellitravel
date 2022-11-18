@@ -19,7 +19,9 @@
     <string name="emergency_number">Emergency Number: 9–1–1</string>
     <string name="official_languages">Official Languages: English, French</string>
     <string name="travel_advisory">Travel Advisory Status: Green</string>
-    <string name="notable_disease_presence">Notable diseases present:</string>
+    <string name="notable_disease_presence">Notable Diseases Present:</string>
+    <string name="gov_link">For More Information Visit the Link Below:</string>
+
     <string name="none">None</string>
     <string name="covid_info">COVID Information:</string>
     <string name="covid_cases">Active COVID cases: 2730</string>

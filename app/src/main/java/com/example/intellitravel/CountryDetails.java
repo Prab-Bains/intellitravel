@@ -3,9 +3,11 @@ package com.example.intellitravel;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ import java.util.Locale;
 
 public class CountryDetails extends AppCompatActivity implements OnMapReadyCallback {
     private final String url = "https://sub.yurtle.net/";
+    String govURL = "https://travel.gc.ca/destinations/";
     TextView countryInfo;
     TextView riskLevel;
     TextView riskString;
@@ -48,7 +51,8 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
     TextView capitalCityTextview;
     TextView currencyTextview;
     TextView callingCodeTextview;
-
+    TextView govLink;
+    TextView bestTimeToTravelText;
     String countryName;
 
     @Override
@@ -64,7 +68,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         this.countryName = countryName;
 
-                BottomNavigationView navView = findViewById(R.id.nav_view);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
         TextView countryNameView = findViewById(R.id.country_name);
         countryNameView.setText(countryName.toUpperCase(Locale.ROOT));
         navView.setSelectedItemId(R.id.nav_search_home);
@@ -112,6 +116,21 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         callingCodeTextview = findViewById(R.id.calling_code);
         String tempUrl = url + "countries/" + countryName;
         country_info = tempUrl + "/info";
+
+        govLink = findViewById(R.id.govLink);
+        govURL += countryName.toLowerCase(Locale.ROOT);
+        govLink.setText(govURL);
+
+        govLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(govURL); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        bestTimeToTravelText = findViewById(R.id.bestTimeToTravel);
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(tempUrl);
     }
@@ -221,12 +240,33 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
                                     JSON_currency_object = JSON_currency_object.getJSONObject(currency_key);
                                     String currency = JSON_currency_object.getString("iso_4217_name");
 
+                                    String bestTimeToTravel = "N/A";
+
+                                    switch (region) {
+                                        case "Asia":
+                                        case "North America":
+                                            bestTimeToTravel = "April to July";
+                                            break;
+                                        case "Europe":
+                                            bestTimeToTravel = "June to September";
+                                            break;
+                                        case "Americas":
+                                            bestTimeToTravel = "April to July and September to November";
+                                            break;
+                                        case "Africa":
+                                            bestTimeToTravel = "September to December";
+                                            break;
+                                        case "Oceania":
+                                            bestTimeToTravel = "September to November and March to May";
+                                            break;
+                                    }
 
                                     officialLanguagesTextview.setText(official_languages);
                                     regionTextview.setText(region);
                                     capitalCityTextview.setText("Capital City: " + capital_city);
                                     callingCodeTextview.setText("Calling Code: " + calling_code);
                                     currencyTextview.setText("Currency: " + currency);
+                                    bestTimeToTravelText.setText("Best Time To Travel: " + bestTimeToTravel);
 
 
                                 } catch (JSONException e) {
