@@ -1,6 +1,8 @@
 package com.example.intellitravel;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -29,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 public class CountryDetails extends AppCompatActivity implements OnMapReadyCallback {
@@ -45,6 +49,8 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
     TextView currencyTextview;
     TextView callingCodeTextview;
 
+    String countryName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +62,9 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         System.out.println("from country details");
         System.out.println(countryName);
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        this.countryName = countryName;
+
+                BottomNavigationView navView = findViewById(R.id.nav_view);
         TextView countryNameView = findViewById(R.id.country_name);
         countryNameView.setText(countryName.toUpperCase(Locale.ROOT));
         navView.setSelectedItemId(R.id.nav_search_home);
@@ -110,10 +118,25 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(0, 0))
-                .draggable(true)
-                .title("Marker"));
+
+        Geocoder geocoder = new Geocoder(this);
+
+        try {
+            List<Address> locations = geocoder.getFromLocationName(countryName, 1);
+            LatLng country = new LatLng(locations.get(0).getLatitude(), locations.get(0).getLongitude());
+
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(country));
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(2));
+
+            googleMap.addMarker(new MarkerOptions()
+                    .position(country)
+                    .draggable(true)
+                    .title(countryName));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
