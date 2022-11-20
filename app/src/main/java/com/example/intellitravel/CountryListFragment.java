@@ -1,6 +1,7 @@
 package com.example.intellitravel;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,17 +12,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import java.util.Arrays;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 /**
  * A fragment representing a list of Items.
  */
 public class CountryListFragment extends Fragment {
+    private final String url = "https://sub.yurtle.net/";
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
+    private final ArrayList<String> countriesToShow = new ArrayList<>();
+    private CountryListFragment.AsyncTaskRunner runner;
+    RecyclerView recyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -53,12 +71,16 @@ public class CountryListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
-        List<String> countries_list = Arrays.asList(this.getResources().getStringArray(R.array.country_names_list));
+        List<String> countries_list = countriesToShow;
+
+        String tempUrl = url + "countries/";
+        runner = new CountryListFragment.AsyncTaskRunner(new MyCountryListRecyclerViewAdapter(countriesToShow));
+        runner.execute(tempUrl);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -67,5 +89,62 @@ public class CountryListFragment extends Fragment {
             recyclerView.setAdapter(new MyCountryListRecyclerViewAdapter(countries_list));
         }
         return view;
+    }
+
+    private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
+        MyCountryListRecyclerViewAdapter adapter;
+
+        public AsyncTaskRunner(MyCountryListRecyclerViewAdapter myContext) {
+            this.adapter = myContext;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestQueue queue = Volley.newRequestQueue(requireActivity());
+            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, strings[0],
+                    null, new Response.Listener<JSONArray>() {
+
+                @Override
+                public void onResponse(JSONArray response) {
+                    System.out.println(response);
+                    Random random = new Random();
+                    while (countriesToShow.size() != 6) {
+                        int index = random.nextInt(response.length());
+                        JSONObject country = null;
+                        try {
+                            country = response.getJSONObject(index);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        String countryName = null;
+                        try {
+                            assert country != null;
+                            countryName = country.getString("name");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        while (countriesToShow.contains(countryName)) {
+                            index = random.nextInt(response.length());
+                            try {
+                                country = response.getJSONObject(index);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                countryName = country.getString("name");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        countriesToShow.add(countryName);
+                    }
+                    System.out.println(countriesToShow);
+                    recyclerView.getAdapter().notifyDataSetChanged();
+                }
+            }, error -> Toast.makeText(getActivity(), error.toString(),
+                    Toast.LENGTH_SHORT).show());
+            queue.add(request);
+            return "";
+        }
     }
 }
