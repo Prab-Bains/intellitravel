@@ -33,6 +33,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -157,6 +161,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
 
     }
+
 
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
 
@@ -289,4 +294,58 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
             return null;
         }
     }
+
+    public void addToFavourites(View view) {
+        String fileData = readFromLocalStorage(view);
+        // add-write text into file
+
+        if (!fileData.contains(countryName)) { // checks if country is already in favourites
+            try {
+                FileOutputStream fileout = openFileOutput("favouriteCountries.txt", MODE_PRIVATE);
+                OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+                outputWriter.write(fileData + countryName + "\n");
+                outputWriter.close();
+
+                //display file saved message
+                String text = countryName.substring(0,1).toUpperCase() + countryName.substring(1).toLowerCase() + " has successfully been added to favourites";
+                Toast.makeText(CountryDetails.this, text, Toast.LENGTH_SHORT).show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        else {
+            //display file saved message
+            String text = countryName.substring(0,1).toUpperCase() + countryName.substring(1).toLowerCase() + " is already in your favourites";
+            Toast.makeText(CountryDetails.this, text, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Read text from file
+    public String readFromLocalStorage(View v) {
+        //reading text from file
+        try {
+            FileInputStream fileIn = openFileInput("favouriteCountries.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            int c;
+            StringBuilder temp= new StringBuilder();
+            while( (c = fileIn.read()) != -1){
+                temp.append((char) c);
+            }
+
+            InputRead.close();
+            return temp.toString();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+
+
 }

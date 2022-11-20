@@ -64,6 +64,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:clickable="true"
+                    android:onClick="addToFavourites"
                     android:contentDescription="@string/my_list"
                     android:src="@drawable/ic_baseline_favorite_24"
                     app:backgroundTint="@color/white"
