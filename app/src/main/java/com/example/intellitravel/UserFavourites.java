@@ -52,15 +52,19 @@ public class UserFavourites extends AppCompatActivity {
             }
         });
 
+        Bundle bundle = new Bundle();
+
+        String countriesFromLocalStorage = readFromLocalStorage();
+        favouriteCountries  = countriesFromLocalStorage.split("\n");
+        bundle.putStringArray("countries", favouriteCountries);
+        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
+
         CountryListFragment countryListFragment = new CountryListFragment();
+        countryListFragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.search_items_list, countryListFragment)
                 .commit();
-
-        String countriesFromLocalStorage = readFromLocalStorage();
-        favouriteCountries  = countriesFromLocalStorage.split("\n");
-        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
     }
 
     // Read text from file

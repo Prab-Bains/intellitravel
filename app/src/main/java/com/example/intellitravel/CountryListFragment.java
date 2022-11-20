@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -73,9 +75,15 @@ public class CountryListFragment extends Fragment {
 
         List<String> countries_list = countriesToShow;
 
-        String tempUrl = url + "countries/";
-        runner = new CountryListFragment.AsyncTaskRunner(new MyCountryListRecyclerViewAdapter(countriesToShow));
-        runner.execute(tempUrl);
+        Bundle bundle = this.getArguments();
+        if (bundle != null && bundle.getStringArray("countries") != null) {
+            String[] countries = bundle.getStringArray("countries");
+            countriesToShow.addAll(Arrays.asList(countries));
+        } else {
+            String tempUrl = url + "/countries";
+            runner = new CountryListFragment.AsyncTaskRunner(new MyCountryListRecyclerViewAdapter(countriesToShow));
+            runner.execute(tempUrl);
+        }
 
         // Set the adapter
         if (view instanceof RecyclerView) {
