@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class SearchPage extends AppCompatActivity {
+public class SearchPage extends AppCompatActivity implements SearchBarFragment.SearchButtonClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +57,13 @@ public class SearchPage extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.search_items_list, countryListFragment)
                 .commit();
+    }
+
+    @Override
+    public void onSearchButtonClick() {
+        /* this gets the text from the search text field --> do what you need to with it */
+        TextView searchText = findViewById(R.id.country_search_text_entry);
+        String query = searchText.getText().toString();
+        System.out.println(query);
     }
 }

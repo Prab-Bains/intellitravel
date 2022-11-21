@@ -9,11 +9,15 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,8 +28,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.List;
+import java.util.Locale;
+
 // Implement OnMapReadyCallback.
-public class MapView extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
+public class MapView extends AppCompatActivity implements OnMapReadyCallback,
+        ActivityCompat.OnRequestPermissionsResultCallback, SearchBarFragment.SearchButtonClickListener {
 
     private GoogleMap map;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -76,10 +84,21 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback, Ac
         mapFragment.getMapAsync(this);
 
         SearchBarFragment searchBarFragment = new SearchBarFragment();
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.search_bar, searchBarFragment)
                 .commit();
+
+//        Button searchButton = findViewById(R.id.button);
+//        searchButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                TextView searchText = findViewById(R.id.editTextTextPersonName);
+//                String query = searchText.getText().toString();
+//                System.out.println(query);
+//            }
+//        });
 
     }
 
@@ -106,8 +125,28 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback, Ac
             googleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(location.getLatitude(), location.getLongitude()))
                     .draggable(true)
-                    .title("Marker"));
+                    .title("Current location"));
         }
+
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+                Geocoder geocoder = new Geocoder(MapView.this, Locale.getDefault());
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+                    if (addresses.size() > 0) {
+                        String country = addresses.get(0).getCountryName();
+                        System.out.println(country);
+
+                        Intent intent = new Intent(MapView.this, CountryDetails.class);
+                        intent.putExtra("country_name", country);
+                        startActivity(intent);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
     }
 
     /**
@@ -147,6 +186,33 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback, Ac
             // Permission was denied. Display an error message
             // Display the missing permission error dialog when the fragments resume.
             permissionDenied = true;
+        }
+    }
+
+    @Override
+    public void onSearchButtonClick() {
+        TextView searchText = findViewById(R.id.country_search_text_entry);
+        String query = searchText.getText().toString();
+        System.out.println(query);
+
+        Geocoder geocoder = new Geocoder(this);
+
+        try {
+            List<Address> locations = geocoder.getFromLocationName(query, 1);
+            LatLng country = new LatLng(locations.get(0).getLatitude(), locations.get(0).getLongitude());
+
+            map.clear();
+
+            map.moveCamera(CameraUpdateFactory.newLatLng(country));
+            map.animateCamera(CameraUpdateFactory.zoomTo(3));
+
+            map.addMarker(new MarkerOptions()
+                    .position(country)
+                    .draggable(true)
+                    .title(query));
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
