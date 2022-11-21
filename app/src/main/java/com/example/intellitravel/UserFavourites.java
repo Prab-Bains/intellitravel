@@ -9,11 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class UserFavourites extends AppCompatActivity {
     String[] favouriteCountries;
@@ -57,7 +60,7 @@ public class UserFavourites extends AppCompatActivity {
         String countriesFromLocalStorage = readFromLocalStorage();
         favouriteCountries  = countriesFromLocalStorage.split("\n");
         bundle.putStringArray("countries", favouriteCountries);
-        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
 
         CountryListFragment countryListFragment = new CountryListFragment();
         countryListFragment.setArguments(bundle);

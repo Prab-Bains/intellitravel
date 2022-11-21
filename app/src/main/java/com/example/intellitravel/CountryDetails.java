@@ -296,7 +296,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
     }
 
     public void addToFavourites(View view) {
-        String fileData = readFromLocalStorage(view);
+        String fileData = readFromLocalStorage();
         // add-write text into file
 
         if (!fileData.contains(countryName)) { // checks if country is already in favourites
@@ -316,14 +316,13 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         }
 
         else {
-            //display file saved message
-            String text = countryName.substring(0,1).toUpperCase() + countryName.substring(1).toLowerCase() + " is already in your favourites";
-            Toast.makeText(CountryDetails.this, text, Toast.LENGTH_SHORT).show();
+            // if favorite button is clicked again the country will be removed from favourites
+            removeFromFavourite(countryName);
         }
     }
 
     // Read text from file
-    public String readFromLocalStorage(View v) {
+    public String readFromLocalStorage() {
         //reading text from file
         try {
             FileInputStream fileIn = openFileInput("favouriteCountries.txt");
@@ -346,6 +345,28 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         return "";
     }
 
+    public void removeFromFavourite(String removedCountry) {
+        String userFavourites = readFromLocalStorage();
+        String updatedFavourites = userFavourites.replace(removedCountry + "\n" , "");
+        updateFavourites(updatedFavourites, removedCountry);
+    }
 
+    public void updateFavourites(String userFav, String removedCountry) {
+
+        try {
+            FileOutputStream fileout = openFileOutput("favouriteCountries.txt", MODE_PRIVATE);
+            OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+            outputWriter.write(userFav);
+            outputWriter.close();
+
+            //display file saved message
+            String text = removedCountry + " has successfully been removed from favourites";
+            Toast.makeText(CountryDetails.this, text, Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
