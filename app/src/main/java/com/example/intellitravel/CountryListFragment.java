@@ -39,9 +39,13 @@ public class CountryListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
-    private final ArrayList<String> countriesToShow = new ArrayList<>();
+    private ArrayList<String> countriesToShow = new ArrayList<>();
     private CountryListFragment.AsyncTaskRunner runner;
     RecyclerView recyclerView;
+
+    public void setCountriesToShow(ArrayList<String> test) {
+        this.countriesToShow = test;
+    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
