@@ -6,6 +6,7 @@ import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -195,15 +196,20 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
                                         disease.append("- ").append(disease_index).append("\n");
                                     }
 
-                                    diseasesTextview.setText(disease);
+                                    if (disease.length() != 0) {
+                                        diseasesTextview.setText(disease);
+                                    }
+
 
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
-                        }, error -> Toast.makeText(CountryDetails.this, error.toString(),
-                                Toast.LENGTH_SHORT).show());
+                        }, error -> Log.d("Error", error.toString()));
+
+//                        error -> Toast.makeText(CountryDetails.this, error.toString(),
+//                                Toast.LENGTH_SHORT).show());
                         queue.add(request2);
 
 
@@ -278,8 +284,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
                                     e.printStackTrace();
                                 }
                             }
-                        }, error -> Toast.makeText(CountryDetails.this, error.toString(),
-                                Toast.LENGTH_SHORT).show());
+                        }, error -> Log.d("Error", error.toString()));
 
                         queue.add(request3);
 
@@ -287,8 +292,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
                         e.printStackTrace();
                     }
                 }
-            }, error -> Toast.makeText(CountryDetails.this, error.toString(),
-                    Toast.LENGTH_SHORT).show());
+            }, error -> Log.d("Error", error.toString()));
             queue.add(request);
 
             return null;

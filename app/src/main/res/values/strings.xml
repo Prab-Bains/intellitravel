@@ -17,7 +17,7 @@
     </string-array>
     <string name="country_name">Canada</string>
     <string name="emergency_number">Emergency Number: 9–1–1</string>
-    <string name="official_languages">Official Languages: English, French</string>
+    <string name="official_languages">Official Languages: English</string>
     <string name="travel_advisory">Travel Advisory Status: Green</string>
     <string name="notable_disease_presence">Notable Diseases Present:</string>
     <string name="gov_link">For More Information Visit the Link Below:</string>
