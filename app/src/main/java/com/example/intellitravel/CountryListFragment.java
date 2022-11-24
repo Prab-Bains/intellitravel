@@ -39,12 +39,21 @@ public class CountryListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
-    private ArrayList<String> countriesToShow = new ArrayList<>();
+    private static ArrayList<String> countriesToShow = new ArrayList<>();
+    private static ArrayList<String> countryNames = new ArrayList<>();
     private CountryListFragment.AsyncTaskRunner runner;
     RecyclerView recyclerView;
 
     public void setCountriesToShow(ArrayList<String> test) {
         this.countriesToShow = test;
+    }
+
+    public static ArrayList<String> getCountriesToShow() {
+        return countriesToShow;
+    }
+
+    public static ArrayList<String> getCountryNames() {
+        return countryNames;
     }
 
     /**
@@ -129,13 +138,15 @@ public class CountryListFragment extends Fragment {
                             e.printStackTrace();
                         }
                         String countryName = null;
+                        String countryPrettyName = null;
                         try {
                             assert country != null;
                             countryName = country.getString("name");
+                            countryPrettyName = country.getString("prettyName");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        while (countriesToShow.contains(countryName)) {
+                        while (countriesToShow.contains(countryPrettyName)) {
                             index = random.nextInt(response.length());
                             try {
                                 country = response.getJSONObject(index);
@@ -144,11 +155,13 @@ public class CountryListFragment extends Fragment {
                             }
                             try {
                                 countryName = country.getString("name");
+                                countryPrettyName = country.getString("prettyName");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        countriesToShow.add(countryName);
+                        countryNames.add(countryName);
+                        countriesToShow.add(countryPrettyName);
                     }
                     System.out.println(countriesToShow);
                     recyclerView.getAdapter().notifyDataSetChanged();

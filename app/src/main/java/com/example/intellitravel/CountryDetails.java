@@ -68,6 +68,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         Intent intent = getIntent();
         String countryName = intent.getStringExtra("country_name").toLowerCase(Locale.ROOT);
+        String countryPrettyName = intent.getStringExtra("country_pretty_name").toLowerCase();
         System.out.println("from country details");
         System.out.println(countryName);
 
@@ -75,7 +76,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         TextView countryNameView = findViewById(R.id.country_name);
-        countryNameView.setText(countryName.toUpperCase(Locale.ROOT));
+        countryNameView.setText(countryPrettyName.toUpperCase(Locale.ROOT));
         navView.setSelectedItemId(R.id.nav_search_home);
 
         navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -120,7 +121,8 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         currencyTextview = findViewById(R.id.currency);
         callingCodeTextview = findViewById(R.id.calling_code);
         String tempUrl = url + "countries/" + countryName;
-        country_info = tempUrl + "/info";
+        country_info = url + "countries/" + countryPrettyName
+                .toLowerCase() + "/info";
 
         govLink = findViewById(R.id.govLink);
         govURL += countryName.toLowerCase(Locale.ROOT);

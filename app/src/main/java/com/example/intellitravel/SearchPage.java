@@ -34,9 +34,18 @@ import java.util.Random;
 public class SearchPage extends AppCompatActivity implements SearchBarFragment.SearchButtonClickListener {
     private final String url = "https://sub.yurtle.net/";
     RecyclerView recyclerView;
-    private ArrayList<String> countriesToShow = new ArrayList<>();
+    private static ArrayList<String> countriesToShow = new ArrayList<>();
+    private static ArrayList<String> countryNames = new ArrayList<>();
     String query;
     private SearchPage.AsyncTaskRunner runner;
+
+    public static ArrayList<String> getCountriesToShow() {
+        return countriesToShow;
+    }
+
+    public static ArrayList<String> getCountryNames() {
+        return countryNames;
+    }
 
 
     @Override
@@ -94,22 +103,6 @@ public class SearchPage extends AppCompatActivity implements SearchBarFragment.S
         TextView searchText = findViewById(R.id.country_search_text_entry);
         query = searchText.getText().toString();
         recyclerView = findViewById(R.id.list);
-//        ArrayList<String> newCountries = new ArrayList<>();
-//        newCountries.add("Cambodia");
-//        newCountries.add("Canada");
-//        newCountries.add("Mexico");
-//        newCountries.add("USA");
-//        ArrayList<String> countriesToShow = new ArrayList<>();
-//        if (query.length() > 0) {
-//            String queryLowercase = query.toLowerCase();
-//            for (int i = 0; i < newCountries.size(); i++) {
-//                String countryLowercase = newCountries.get(i).toLowerCase();
-//                if (countryLowercase.contains(queryLowercase)) {
-//                    countriesToShow.add(newCountries.get(i));
-//                }
-//            }
-//        }
-//        recyclerView.setAdapter(new MyCountryListRecyclerViewAdapter(countriesToShow));
         System.out.println(query);
         String tempUrl = url + "/countries";
         runner = new SearchPage.AsyncTaskRunner(new MyCountryListRecyclerViewAdapter(countriesToShow));
@@ -138,10 +131,13 @@ public class SearchPage extends AppCompatActivity implements SearchBarFragment.S
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject country = response.getJSONObject(i);
-                                String countryName = country.getString("prettyName");
+                                String countryName = country.getString("name");
                                 String countryNameLowercase = countryName.toLowerCase();
-                                if (countryNameLowercase.contains(queryLowercase)) {
-                                    countriesToShow.add(countryName);
+                                String countryPrettyName = country.getString("prettyName");
+                                String countryPrettyNameLowercase = countryPrettyName.toLowerCase();
+                                if (countryPrettyNameLowercase.contains(queryLowercase)) {
+                                    countryNames.add(countryNameLowercase);
+                                    countriesToShow.add(countryPrettyName);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

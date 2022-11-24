@@ -33,7 +33,7 @@ import java.util.List;
 
 public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCountryListRecyclerViewAdapter.ViewHolder> {
     private final static String flagUrl = "https://countryflagsapi.com/png/";
-
+    private String countryNameToShow;
     private final List<String> mValues;
     private final List<Drawable> mDrawables;
 
@@ -88,10 +88,30 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
 
             TextView textView = view.findViewById(R.id.content);
             String countryName = (String) textView.getText();
+            ArrayList<String> countriesToShow = CountryListFragment.getCountriesToShow();
+            ArrayList<String> countryNames = CountryListFragment.getCountryNames();
+            ArrayList<String> sCountriesToShow = SearchPage.getCountriesToShow();
+            ArrayList<String> sCountryNames = SearchPage.getCountryNames();
 
             Intent intent = new Intent(view.getContext(), CountryDetails.class);
-            intent.putExtra("country_name", countryName);
-            view.getContext().startActivity(intent);
+            for (int i = 0; i < countryNames.size(); i++) {
+                if (countriesToShow.get(i).equals(countryName)) {
+                    intent.putExtra("country_name", countryNames.get(i));
+                    intent.putExtra("country_pretty_name", countriesToShow.get(i));
+                    view.getContext().startActivity(intent);
+                    break;
+                }
+            }
+            System.out.println(countryName);
+            for (int i = 0; i < sCountryNames.size(); i++) {
+                if (sCountriesToShow.get(i).equals(countryName)) {
+                    intent.putExtra("country_name", sCountryNames.get(i));
+                    intent.putExtra("country_pretty_name", sCountriesToShow.get(i));
+                    view.getContext().startActivity(intent);
+                    break;
+                }
+            }
+
         }
     }
 
@@ -102,7 +122,38 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
             InputStream inputStream = null;
 
             try {
-                inputStream = (InputStream) new URL(flagUrl + country[0].first).getContent();
+                String countryFlagUrl = flagUrl + country[0].first;
+                countryFlagUrl = countryFlagUrl.replace(" ", "%20");
+                countryFlagUrl = countryFlagUrl.replace("&", "");
+                switch (country[0].first) {
+                    case "Brunei": {
+                        countryFlagUrl = flagUrl + "bn";
+                        break;
+                    }
+                    case "Cook Islands": {
+                        countryFlagUrl = flagUrl + "ck";
+                        break;
+                    }
+                    case "Côte d'Ivoire (Ivory Coast)": {
+                        countryFlagUrl = flagUrl + "ci";
+                        break;
+                    }
+                    case "Israel, the West Bank and the Gaza Strip": {
+                        countryFlagUrl = flagUrl + "il";
+                        break;
+                    }
+                    case "Micronesia (FSM)": {
+                        countryFlagUrl = flagUrl + "fm";
+                        break;
+                    }
+                    case "South Korea": {
+                        countryFlagUrl = flagUrl + "kr";
+                        break;
+                    }
+                    default: break;
+                }
+                System.out.println(countryFlagUrl);
+                inputStream = (InputStream) new URL(countryFlagUrl).getContent();
             } catch (IOException e) {
                 e.printStackTrace();
             }
