@@ -69,7 +69,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         Intent intent = getIntent();
         String countryName = intent.getStringExtra("country_name").toLowerCase(Locale.ROOT);
-        String countryPrettyName = intent.getStringExtra("country_pretty_name").toLowerCase();
+        String countryPrettyName = intent.getStringExtra("country_pretty_name");
         System.out.println("from country details");
         System.out.println(countryName);
 
@@ -325,6 +325,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         if (!fileData.contains(countryPrettyName)) { // checks if country is already in favourites
             try {
+
                 FileOutputStream fileout = openFileOutput("favouriteCountries.txt", MODE_PRIVATE);
                 OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
                 outputWriter.write(fileData + countryPrettyName + "\n");
