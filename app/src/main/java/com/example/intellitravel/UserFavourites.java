@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.util.ArrayUtils;
@@ -17,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Objects;
 
 public class UserFavourites extends AppCompatActivity {
     String[] favouriteCountries;
@@ -59,6 +61,11 @@ public class UserFavourites extends AppCompatActivity {
 
         String countriesFromLocalStorage = readFromLocalStorage();
         favouriteCountries  = countriesFromLocalStorage.split("\n");
+
+        if (Objects.equals(favouriteCountries[0], "")) {
+            favouriteCountries[0] = "No favourites yet!";
+        }
+
         bundle.putStringArray("countries", favouriteCountries);
 //        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
 
