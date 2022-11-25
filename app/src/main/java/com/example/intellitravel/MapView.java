@@ -140,6 +140,7 @@ public class MapView extends AppCompatActivity implements OnMapReadyCallback,
 
                         Intent intent = new Intent(MapView.this, CountryDetails.class);
                         intent.putExtra("country_name", country);
+                        intent.putExtra("country_pretty_name", country);
                         startActivity(intent);
                     }
                 } catch (Exception e) {
