@@ -30,6 +30,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCountryListRecyclerViewAdapter.ViewHolder> {
     private final static String flagUrl = "https://countryflagsapi.com/png/";
@@ -87,31 +88,40 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
             System.out.println("click!");
 
             TextView textView = view.findViewById(R.id.content);
-            String countryName = (String) textView.getText();
-            ArrayList<String> countriesToShow = CountryListFragment.getCountriesToShow();
-            ArrayList<String> countryNames = CountryListFragment.getCountryNames();
-            ArrayList<String> sCountriesToShow = SearchPage.getCountriesToShow();
-            ArrayList<String> sCountryNames = SearchPage.getCountryNames();
+            String countryPrettyName = (String) textView.getText();
+            String countryName = countryPrettyName.replaceAll("[,\\(\\)]+", "");
+            countryName = countryName.replaceAll("['\\s]+", "-");
+            countryName = countryName.replaceAll("ô", "o");
+            countryName = countryName.replaceAll("ü", "u");
+//            ArrayList<String> countriesToShow = CountryListFragment.getCountriesToShow();
+//            ArrayList<String> countryNames = CountryListFragment.getCountryNames();
+//            ArrayList<String> sCountriesToShow = SearchPage.getCountriesToShow();
+//            ArrayList<String> sCountryNames = SearchPage.getCountryNames();
 
             Intent intent = new Intent(view.getContext(), CountryDetails.class);
-            for (int i = 0; i < countryNames.size(); i++) {
-                if (countriesToShow.get(i).equals(countryName)) {
-                    intent.putExtra("country_name", countryNames.get(i));
-                    intent.putExtra("country_pretty_name", countriesToShow.get(i));
-                    view.getContext().startActivity(intent);
-                    break;
-                }
-            }
-            System.out.println(countryName);
-            for (int i = 0; i < sCountryNames.size(); i++) {
-                if (sCountriesToShow.get(i).equals(countryName)) {
-                    intent.putExtra("country_name", sCountryNames.get(i));
-                    intent.putExtra("country_pretty_name", sCountriesToShow.get(i));
-                    view.getContext().startActivity(intent);
-                    break;
-                }
-            }
+//            for (int i = 0; i < countryNames.size(); i++) {
+//                if (countriesToShow.get(i).equals(countryName)) {
+//                    intent.putExtra("country_name", countryNames.get(i));
+//                    intent.putExtra("country_pretty_name", countriesToShow.get(i));
+//                    view.getContext().startActivity(intent);
+//                    break;
+//                }
+//            }
+//            System.out.println(countryName);
+//            for (int i = 0; i < sCountryNames.size(); i++) {
+//                if (sCountriesToShow.get(i).equals(countryName)) {
+//                    intent.putExtra("country_name", sCountryNames.get(i));
+//                    intent.putExtra("country_pretty_name", sCountriesToShow.get(i));
+//                    view.getContext().startActivity(intent);
+//                    break;
+//                }
+//            }
+            intent.putExtra("country_name", countryName);
+            intent.putExtra("country_pretty_name", countryPrettyName);
+            view.getContext().startActivity(intent);
 
+//            System.out.println(countryNames);
+//            System.out.println(sCountryNames);
         }
     }
 
@@ -150,9 +160,20 @@ public class MyCountryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCou
                         countryFlagUrl = flagUrl + "kr";
                         break;
                     }
+                    case "Turks and Caicos Islands": {
+                        countryFlagUrl = flagUrl + "tc";
+                        break;
+                    }
+                    case "Türkiye": {
+                        countryFlagUrl = flagUrl + "tr";
+                        break;
+                    }
+                    case "": {
+                        countryFlagUrl = "";
+                        break;
+                    }
                     default: break;
                 }
-                System.out.println(countryFlagUrl);
                 inputStream = (InputStream) new URL(countryFlagUrl).getContent();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -34,18 +34,18 @@ import java.util.Random;
 public class SearchPage extends AppCompatActivity implements SearchBarFragment.SearchButtonClickListener {
     private final String url = "https://sub.yurtle.net/";
     RecyclerView recyclerView;
-    private static ArrayList<String> countriesToShow = new ArrayList<>();
-    private static ArrayList<String> countryNames = new ArrayList<>();
+    private ArrayList<String> countriesToShow = new ArrayList<>();
+    private ArrayList<String> countryNames = new ArrayList<>();
     String query;
     private SearchPage.AsyncTaskRunner runner;
 
-    public static ArrayList<String> getCountriesToShow() {
-        return countriesToShow;
-    }
-
-    public static ArrayList<String> getCountryNames() {
-        return countryNames;
-    }
+//    public static ArrayList<String> getCountriesToShow() {
+//        return countriesToShow;
+//    }
+//
+//    public static ArrayList<String> getCountryNames() {
+//        return countryNames;
+//    }
 
 
     @Override

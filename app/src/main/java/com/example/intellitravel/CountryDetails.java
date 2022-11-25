@@ -59,6 +59,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
     TextView govLink;
     TextView bestTimeToTravelText;
     String countryName;
+    String countryPrettyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         System.out.println(countryName);
 
         this.countryName = countryName;
+        this.countryPrettyName = countryPrettyName;
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         TextView countryNameView = findViewById(R.id.country_name);
@@ -121,8 +123,24 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         currencyTextview = findViewById(R.id.currency);
         callingCodeTextview = findViewById(R.id.calling_code);
         String tempUrl = url + "countries/" + countryName;
-        country_info = url + "countries/" + countryPrettyName
-                .toLowerCase() + "/info";
+        String countryInfoName = countryName.replace("-", " ");
+        switch (countryInfoName) {
+            case "cote-d-ivoire-ivory-coast": {
+                countryInfoName = "ivory coast";
+                break;
+            }
+            case "türkiye": {
+                countryInfoName = "turkey";
+                break;
+            }
+            case "": {
+                countryInfoName = "";
+                break;
+            }
+            default: break;
+        }
+        country_info = url + "countries/" + countryInfoName + "/info";
+        System.out.println(country_info);
 
         govLink = findViewById(R.id.govLink);
         govURL += countryName.toLowerCase(Locale.ROOT);
@@ -305,15 +323,15 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         String fileData = readFromLocalStorage();
         // add-write text into file
 
-        if (!fileData.contains(countryName)) { // checks if country is already in favourites
+        if (!fileData.contains(countryPrettyName)) { // checks if country is already in favourites
             try {
                 FileOutputStream fileout = openFileOutput("favouriteCountries.txt", MODE_PRIVATE);
                 OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
-                outputWriter.write(fileData + countryName + "\n");
+                outputWriter.write(fileData + countryPrettyName + "\n");
                 outputWriter.close();
 
                 //display file saved message
-                String text = countryName.substring(0,1).toUpperCase() + countryName.substring(1).toLowerCase() + " has successfully been added to favourites";
+                String text = countryPrettyName.substring(0,1).toUpperCase() + countryPrettyName.substring(1).toLowerCase() + " has successfully been added to favourites";
                 Toast.makeText(CountryDetails.this, text, Toast.LENGTH_SHORT).show();
 
             } catch (Exception e) {
@@ -323,7 +341,7 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         else {
             // if favorite button is clicked again the country will be removed from favourites
-            removeFromFavourite(countryName);
+            removeFromFavourite(countryPrettyName);
         }
     }
 
