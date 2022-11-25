@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -67,7 +68,7 @@ public class UserFavourites extends AppCompatActivity {
             NoFavouritesFragment noFavouritesFragment = new NoFavouritesFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.search_items_list, noFavouritesFragment)
+                    .replace(R.id.search_items_list, noFavouritesFragment)
                     .commit();
         } else {
 
@@ -78,9 +79,25 @@ public class UserFavourites extends AppCompatActivity {
             countryListFragment.setArguments(bundle);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.search_items_list, countryListFragment)
+                    .replace(R.id.search_items_list, countryListFragment)
                     .commit();
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        Bundle bundle = new Bundle();
+        String countriesFromLocalStorage = readFromLocalStorage();
+        favouriteCountries  = countriesFromLocalStorage.split("\n");
+        bundle.putStringArray("countries", favouriteCountries);
+        CountryListFragment countryListFragment = new CountryListFragment();
+        countryListFragment.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.search_items_list, countryListFragment)
+                .commit();
+        super.onResume();
     }
 
     // Read text from file

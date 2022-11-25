@@ -87,13 +87,13 @@ public class SearchPage extends AppCompatActivity implements SearchBarFragment.S
         SearchBarFragment searchBarFragment = new SearchBarFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.search_bar, searchBarFragment)
+                .replace(R.id.search_bar, searchBarFragment)
                 .commit();
 
         CountryListFragment countryListFragment = new CountryListFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.search_items_list, countryListFragment)
+                .replace(R.id.search_items_list, countryListFragment)
                 .commit();
     }
 
