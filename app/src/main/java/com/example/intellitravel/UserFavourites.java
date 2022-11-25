@@ -63,18 +63,24 @@ public class UserFavourites extends AppCompatActivity {
         favouriteCountries  = countriesFromLocalStorage.split("\n");
 
         if (Objects.equals(favouriteCountries[0], "")) {
-            favouriteCountries[0] = "No favourites yet!";
+//            favouriteCountries[0] = "No favourites yet!";
+            NoFavouritesFragment noFavouritesFragment = new NoFavouritesFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.search_items_list, noFavouritesFragment)
+                    .commit();
+        } else {
+
+            bundle.putStringArray("countries", favouriteCountries);
+            //        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
+
+            CountryListFragment countryListFragment = new CountryListFragment();
+            countryListFragment.setArguments(bundle);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.search_items_list, countryListFragment)
+                    .commit();
         }
-
-        bundle.putStringArray("countries", favouriteCountries);
-//        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
-
-        CountryListFragment countryListFragment = new CountryListFragment();
-        countryListFragment.setArguments(bundle);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.search_items_list, countryListFragment)
-                .commit();
     }
 
     // Read text from file
