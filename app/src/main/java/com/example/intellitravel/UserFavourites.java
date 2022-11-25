@@ -63,23 +63,22 @@ public class UserFavourites extends AppCompatActivity {
         String countriesFromLocalStorage = readFromLocalStorage();
         favouriteCountries  = countriesFromLocalStorage.split("\n");
 
+        System.out.println(favouriteCountries[0]);
+
         if (Objects.equals(favouriteCountries[0], "")) {
-//            favouriteCountries[0] = "No favourites yet!";
             NoFavouritesFragment noFavouritesFragment = new NoFavouritesFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.search_items_list, noFavouritesFragment)
+                    .add(R.id.search_items_list, noFavouritesFragment)
                     .commit();
         } else {
-
             bundle.putStringArray("countries", favouriteCountries);
-            //        Toast.makeText(getBaseContext(), countriesFromLocalStorage, Toast.LENGTH_LONG).show();
 
             CountryListFragment countryListFragment = new CountryListFragment();
             countryListFragment.setArguments(bundle);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.search_items_list, countryListFragment)
+                    .add(R.id.search_items_list, countryListFragment)
                     .commit();
         }
     }
@@ -87,16 +86,18 @@ public class UserFavourites extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Bundle bundle = new Bundle();
-        String countriesFromLocalStorage = readFromLocalStorage();
-        favouriteCountries  = countriesFromLocalStorage.split("\n");
-        bundle.putStringArray("countries", favouriteCountries);
-        CountryListFragment countryListFragment = new CountryListFragment();
-        countryListFragment.setArguments(bundle);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.search_items_list, countryListFragment)
-                .commit();
+        if (!Objects.equals(favouriteCountries[0], "")) {
+            Bundle bundle = new Bundle();
+            String countriesFromLocalStorage = readFromLocalStorage();
+            favouriteCountries = countriesFromLocalStorage.split("\n");
+            bundle.putStringArray("countries", favouriteCountries);
+            CountryListFragment countryListFragment = new CountryListFragment();
+            countryListFragment.setArguments(bundle);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.search_items_list, countryListFragment)
+                    .commit();
+        }
         super.onResume();
     }
 
