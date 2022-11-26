@@ -15,9 +15,9 @@
         <item>UK</item>
         <item>Brazil</item>
     </string-array>
-    <string name="country_name">Canada</string>
+    <string name="country_name">Country</string>
     <string name="emergency_number">Emergency Number: 9–1–1</string>
-    <string name="official_languages">Official Languages: English</string>
+    <string name="official_languages">Official Languages: Unknown</string>
     <string name="travel_advisory">Travel Advisory Status: Green</string>
     <string name="notable_disease_presence">Notable Diseases Present:</string>
     <string name="gov_link">For More Information Visit the Link Below:</string>
@@ -76,4 +76,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_favourites_yet">No favourites yet! Try searching for a country.</string>
+    <string name="capital">Capital City: Unknown</string>
+
+    <string name="calling">Calling Code: Unknown</string>
+    <string name="riskLevel">Risk Level: Unknown</string>
+    <string name="riskDescription">Description: N/A</string>
+    <string name="currency">Currency: Unknown</string>
+    <string name="travel">Best Time to Travel: Unknown</string>
+    <string name="link">https://travel.gc.ca/travelling/advisories</string>
+    <string name="region">Unknown</string>
+
+
+
+
 </resources>

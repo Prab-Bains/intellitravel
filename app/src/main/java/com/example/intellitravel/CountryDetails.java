@@ -75,7 +75,8 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
 
         this.countryName = countryName;
         this.countryPrettyName = countryPrettyName;
-
+        System.out.println(countryName);
+        System.out.println(countryPrettyName);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         TextView countryNameView = findViewById(R.id.country_name);
         countryNameView.setText(countryPrettyName.toUpperCase(Locale.ROOT));

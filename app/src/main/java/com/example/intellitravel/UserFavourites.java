@@ -2,6 +2,7 @@ package com.example.intellitravel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -86,16 +87,23 @@ public class UserFavourites extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        String countriesFromLocalStorage = readFromLocalStorage();
+        favouriteCountries = countriesFromLocalStorage.split("\n");
+        Bundle bundle = new Bundle();
         if (!Objects.equals(favouriteCountries[0], "")) {
-            Bundle bundle = new Bundle();
-            String countriesFromLocalStorage = readFromLocalStorage();
-            favouriteCountries = countriesFromLocalStorage.split("\n");
+            System.out.println("No Countries!");
             bundle.putStringArray("countries", favouriteCountries);
             CountryListFragment countryListFragment = new CountryListFragment();
             countryListFragment.setArguments(bundle);
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.search_items_list, countryListFragment)
+                    .commit();
+        } else {
+            NoFavouritesFragment noFavouritesFragment = new NoFavouritesFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.search_items_list, noFavouritesFragment)
                     .commit();
         }
         super.onResume();
