@@ -68,7 +68,7 @@
                     android:contentDescription="@string/my_list"
                     android:src="@drawable/ic_baseline_favorite_24"
                     app:backgroundTint="@color/white"
-                    app:tint="#ff7fa5" />
+                    app:tint="@color/terra_cotta" />
 
                 <TextView
                     android:id="@+id/country_name"

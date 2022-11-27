@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gunmetal">#223843</color>
+    <color name="cultured">#EFF1F3</color>
+    <color name="light_gray">#DBD3D8</color>
+    <color name="tumbleweed">#D8B4A0</color>
+    <color name="terra_cotta">#D77A61</color>
 </resources>

@@ -27,7 +27,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONArray;
@@ -159,6 +161,8 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         bestTimeToTravelText = findViewById(R.id.bestTimeToTravel);
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(tempUrl);
+
+        this.checkIfInFavourites(countryPrettyName);
     }
 
     @Override
@@ -336,6 +340,8 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
                 String text = countryPrettyName.substring(0,1).toUpperCase() + countryPrettyName.substring(1).toLowerCase() + " has successfully been added to favourites";
                 Toast.makeText(CountryDetails.this, text, Toast.LENGTH_SHORT).show();
 
+                FloatingActionButton fab = findViewById(R.id.favourite_button);
+                fab.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_baseline_check_24));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -344,6 +350,8 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
         else {
             // if favorite button is clicked again the country will be removed from favourites
             removeFromFavourite(countryPrettyName);
+            FloatingActionButton fab = findViewById(R.id.favourite_button);
+            fab.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite_24));
         }
     }
 
@@ -393,6 +401,21 @@ public class CountryDetails extends AppCompatActivity implements OnMapReadyCallb
             e.printStackTrace();
         }
 
+    }
+
+    public boolean checkIfInFavourites(String countryName) {
+        String favourites = readFromLocalStorage();
+        System.out.println("favourites: " + favourites);
+
+        if (favourites.contains(countryName)) {
+            System.out.println("country " + countryName + " is in favourites list");
+            FloatingActionButton fab = findViewById(R.id.favourite_button);
+            fab.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_baseline_check_24));
+        } else {
+            System.out.println("country " + countryName + " is NOT in favourites list");
+        }
+
+        return false;
     }
 
 }
